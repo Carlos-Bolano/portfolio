@@ -53,7 +53,7 @@ const showMessage = (message, className) => {
 };
 
 const showSuccessMessage = (message, name) => {
-    showMessage(`Muchas gracias ${name} ${message}`, 'Contact-success-message');
+    showMessage(`Muchas gracias ${name}, ${message}`, 'Contact-success-message');
 };
 
 const showErrorMessage = (message) => {
@@ -81,10 +81,9 @@ const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const value = Object.fromEntries(data.entries());
-    console.log(value)
 
     try {
-        const apiResponse = await sendRequestToAPI('http://localhost:3000/api/people', value);
+        const apiResponse = await sendRequestToAPI('https://backend-portfolio-tr3d.onrender.com/api/people', value);
         console.log(apiResponse);
 
         if (apiResponse && apiResponse.status === 'success') {
