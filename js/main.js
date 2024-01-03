@@ -77,13 +77,15 @@ const sendRequestToAPI = async (url, data) => {
     return apiResponse;
 };
 
+const apiUri = process.env.API_URI
+
 const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
     const value = Object.fromEntries(data.entries());
 
     try {
-        const apiResponse = await sendRequestToAPI('https://backend-portfolio-tr3d.onrender.com/api/people', value);
+        const apiResponse = await sendRequestToAPI(apiUri, value);
         console.log(apiResponse);
 
         if (apiResponse && apiResponse.status === 'success') {
