@@ -77,7 +77,7 @@ const sendRequestToAPI = async (url, data) => {
     return apiResponse;
 };
 
-const apiUri = process.env.API_URI
+const apiUri = "https://back-end-portfolio-production.up.railway.app/api/people"
 
 const handleSubmit = async (event) => {
     event.preventDefault();
@@ -86,7 +86,6 @@ const handleSubmit = async (event) => {
 
     try {
         const apiResponse = await sendRequestToAPI(apiUri, value);
-        console.log(apiResponse);
 
         if (apiResponse && apiResponse.status === 'success') {
             showSuccessMessage(apiResponse.message, apiResponse.data.name);
