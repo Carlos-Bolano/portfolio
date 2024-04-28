@@ -1,0 +1,327 @@
+---
+import "@fontsource/poppins";
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  /* reset css */
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    vertical-align: baseline;
+  }
+  *::before,
+  *::after {
+    display: block;
+  }
+
+  img,
+  picture,
+  video,
+  iframe,
+  figure {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center center;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+  }
+  p a {
+    display: inline;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  span,
+  a,
+  strong,
+  blockquote,
+  i,
+  b,
+  u,
+  em {
+    font-size: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  blockquote:before,
+  blockquote:after,
+  q:before,
+  q:after {
+    content: "";
+    content: none;
+  }
+
+  form,
+  input,
+  textarea,
+  select,
+  button,
+  label {
+    font-family: inherit;
+    font-size: inherit;
+    hyphens: auto;
+    background-color: transparent;
+    color: inherit;
+    display: block;
+    /* (Opcional) */
+    appearance: none;
+  }
+
+  table,
+  tr,
+  td {
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  svg {
+    width: 100%;
+    display: block;
+    fill: currentColor;
+  }
+
+  body {
+    min-height: 100vh;
+    font-size: 100%;
+  }
+
+  :root {
+    /* Colors */
+    --text-color: #e2e2e2;
+    --Yellow-color: #ffbd06;
+    --dark-color: #070a20;
+    --Blue-color: rgb(28, 28, 59);
+
+    /* Typography */
+    --mainTypography: "Poppins", sans-serif;
+  }
+
+  /* GLOBAL STYLES */
+
+  body {
+    background-color: var(--dark-color);
+    font-family: var(--mainTypography);
+    color: var(--text-color);
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: auto;
+    padding: 0em 1.25em;
+    overflow: hidden;
+  }
+
+  .btn {
+    font-family: var(--mainTypography);
+    border: solid 3px var(--Yellow-color);
+    color: var(--Yellow-color);
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 7px;
+    padding: 10px 35px;
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+
+  .btn:hover {
+    background-color: var(--Yellow-color);
+    color: var(--dark-color);
+    transform: translateY(-2px);
+  }
+
+  .btn2 {
+    border: solid 3px var(--text-color);
+    background-color: var(--text-color);
+    font-size: 1em;
+    font-weight: 600;
+    border-radius: 7px;
+    padding: 10px 35px;
+    color: var(--dark-color);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+
+  .btn2:hover {
+    background-color: var(--Yellow-color);
+    color: var(--dark-color);
+    transform: translateY(-2px);
+    border-color: var(--Yellow-color);
+  }
+
+  .decoration {
+    color: var(--Yellow-color);
+  }
+
+  .text-decoration {
+    color: #f5d785;
+  }
+
+  .sub-titles {
+    font-size: 65px;
+    line-height: 75px;
+    font-weight: 600;
+    color: var(--Yellow-color);
+  }
+
+  .Contact-success-message {
+    display: block;
+    background-color: rgb(45, 78, 45);
+    color: rgb(0, 245, 0);
+    padding: 15px;
+    margin: 10px 0px;
+    font-size: 18px;
+    border-radius: 7px;
+  }
+
+  .Contact-error-message {
+    display: block;
+    background-color: rgb(77, 33, 33);
+    color: red;
+    padding: 15px;
+    margin: 10px 0px;
+    font-size: 18px;
+    border-radius: 7px;
+  }
+
+  /* RESPONSIVE DESIGN */
+
+  @media (max-width: 944px) {
+    /* PROJECTS SECTION */
+
+    .Porfolio-project {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    .Porfolio-project.reverse {
+      flex-direction: column-reverse;
+    }
+
+    .Porfolio-project span {
+      display: none;
+    }
+  }
+
+  @media (max-width: 866px) {
+    .Contact-content {
+      flex-direction: column;
+    }
+
+    .Contact-left {
+      width: 100%;
+    }
+    .Contact-right {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 838px) {
+    .About-left {
+      flex-basis: 100%;
+    }
+    .About-rigth {
+      flex-basis: 100%;
+    }
+  }
+
+  @media (max-width: 444px) {
+    .Porfolio-cards {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .Porfolio-project-title {
+      font-size: 30px;
+      line-height: 35px;
+    }
+
+    .Porfolio-project-description {
+      font-size: 15px;
+    }
+
+    .Porfolio-card-title {
+      font-size: 30px;
+      line-height: 35px;
+    }
+    .Porfolio-card-description {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 411px) {
+    .sub-titles {
+      font-size: 54px;
+      line-height: 50px;
+    }
+
+    /* SERVICES SECTION */
+    .Services-cards {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script is:inline src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"
+></script>
+
+<script type="module">
+  var typed = new Typed(".typed", {
+    strings: ["web development", "Front-end development"],
+    typeSpeed: 85,
+    startDelay: 0,
+    backSpeed: 85,
+    backDelay: 400,
+    loop: true,
+    showCursor: true,
+    cursorChar: "|",
+    contentType: "html",
+  });
+</script>

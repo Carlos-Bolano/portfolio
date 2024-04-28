@@ -1,0 +1,78 @@
+---
+import ProjectCard from "../components/ProjectCard.astro";
+import ProjectRecentCard from "../components/ProjectRecentCard.astro";
+import { projects } from "../constans";
+---
+
+<section class="Porfolio" id="porfolio">
+  <h2 class="sub-titles">My Projects</h2>
+  <div class="Porfolio-content">
+    {
+      projects.map((project, index) =>
+        project.recent ? (
+          <ProjectRecentCard
+            title={project.title}
+            image={project.image}
+            link={project.link}
+            description={project.description}
+            technologies={project.technologies}
+            github={project.github}
+            recent={project.recent}
+            index={index}
+          />
+        ) : null
+      )
+    }
+    <div class="Porfolio-cards">
+      {
+        projects.map((project) =>
+          project.recent ? null : (
+            <ProjectCard
+              title={project.title}
+              image={project.image}
+              link={project.link}
+              description={project.description}
+              technologies={project.technologies}
+              github={project.github}
+              recent={project.recent}
+            />
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+<style>
+  .Porfolio {
+    padding-bottom: 100px;
+  }
+  .Porfolio-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 40px;
+  }
+
+  @media (max-width: 444px) {
+    .Porfolio-cards {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .Porfolio-project-title {
+      font-size: 30px;
+      line-height: 35px;
+    }
+
+    .Porfolio-project-description {
+      font-size: 15px;
+    }
+
+    .Porfolio-card-title {
+      font-size: 30px;
+      line-height: 35px;
+    }
+    .Porfolio-card-description {
+      font-size: 15px;
+    }
+  }
+</style>

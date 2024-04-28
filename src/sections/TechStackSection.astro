@@ -1,0 +1,91 @@
+---
+import { TechStack } from "../constans";
+---
+
+<section class="Stack" id="stack">
+  <h2 class="sub-titles">My Tech Stack</h2>
+  <article class="Stack-content">
+    {
+      TechStack.map((stack) => (
+        <div class="Stack-card">
+          <stack.icon class="Stack-card-icon" />
+          <h5>{stack.name}</h5>
+          <h4>{stack.name}</h4>
+        </div>
+      ))
+    }
+  </article>
+</section>
+
+<style>
+  .Stack {
+    padding-bottom: 100px;
+  }
+  .Stack-content {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+  .Stack-card {
+    border-radius: 10px;
+    background: var(--Blue-color);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+    transition:
+      color 300ms ease,
+      background 300ms ease,
+      transform 300ms ease;
+  }
+
+  .Stack-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 30px -15px rgba(0, 0, 0, 0.5);
+    background: var(--Yellow-color);
+    z-index: 1;
+    color: var(--dark-color);
+  }
+
+  .Stack-card-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .Stack-card:hover .Stack-card-icon {
+    color: var(--dark-color);
+    transition: color 300ms ease;
+  }
+
+  .Stack-card h5 {
+    font-size: 14px;
+    color: white;
+    transition: all 300ms ease;
+  }
+
+  .Stack-card:hover h5 {
+    color: var(--dark-color);
+    opacity: 0;
+  }
+
+  .Stack-card h4 {
+    color: var(--dark-color);
+    font-size: 18px;
+    position: absolute;
+    bottom: 19px;
+    filter: blur(10px);
+    opacity: 0;
+    transition: all 300ms ease;
+  }
+
+  .Stack-card:hover h4 {
+    font-size: 14px;
+    opacity: 1;
+    filter: blur(0px);
+    color: var(--dark-color);
+  }
+</style>

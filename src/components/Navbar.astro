@@ -1,0 +1,150 @@
+---
+import { NavLinks } from "../constans";
+import MenuIcon from "./icons/Menu.astro";
+---
+
+<header class="Header">
+  <section class="Header-content container">
+    <a class="Header-logo" title="Logo" href="#home">CarlosB;</a>
+    <nav class="Header-nav">
+      <ul class="Header-nav-list">
+        {
+          NavLinks.map((link) => (
+            <>
+              <li>
+                <a class="Header-nav-item" title={link.name} href={link.path}>
+                  {link.name}
+                </a>
+              </li>
+            </>
+          ))
+        }
+        <li>
+          <a class="Header-nav-btn btn" title="Contact Me" href="#contact">
+            Contact Me
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <button class="Header-burger-btn" type="button" title="Menu">
+      <MenuIcon />
+    </button>
+  </section>
+</header>
+
+<style>
+  .Header {
+    background-color: var(--dark-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 3;
+  }
+
+  .Header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.9375rem;
+  }
+
+  .Header-logo {
+    font-weight: bold;
+    color: var(--Yellow-color);
+    font-size: 1.5625rem;
+    width: max-content;
+    cursor: pointer;
+  }
+
+  .Header-nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.875rem;
+  }
+
+  .Header-nav-item {
+    font-size: 1.1em;
+    font-weight: 400;
+    margin: 0.625rem;
+    position: relative;
+  }
+
+  .Header-nav-item:hover {
+    color: var(--Yellow-color);
+    transition: color 0.5s;
+  }
+
+  .Header-nav-item::after {
+    content: "";
+    width: 0;
+    height: 3px;
+    background: var(--Yellow-color);
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    transition: all 0.5s ease;
+  }
+
+  .Header-nav-item:hover::after {
+    width: 100%;
+  }
+
+  .Header-nav-btn {
+    background-color: var(--Yellow-color);
+    color: var(--dark-color);
+  }
+
+  .Header-nav-btn:hover {
+    border-color: var(--Yellow-color);
+    background-color: var(--dark-color);
+    color: var(--Yellow-color);
+    transform: translateY(-2px);
+  }
+
+  .Header-burger-btn {
+    display: none;
+  }
+
+  @media (max-width: 838px) {
+    /* HEADER SECTION */
+    .Header-burger-btn {
+      display: block;
+    }
+
+    .Header-nav-list {
+      position: absolute;
+      top: 0;
+      left: -100vw;
+      height: 100vh;
+      width: 0%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: var(--Blue-color);
+      backdrop-filter: blur(5px);
+      opacity: 0.91;
+      transition: all 0.5s;
+    }
+
+    .Header-nav-active {
+      display: flex;
+      left: 0;
+      width: 80%;
+    }
+  }
+</style>
+
+<script>
+  const buttonMenu = document.querySelector(
+    ".Header-burger-btn"
+  ) as HTMLButtonElement;
+  const navbar = document.querySelector(".Header-nav-list") as HTMLElement;
+
+  function toggleMenu() {
+    navbar.classList.toggle("Header-nav-active");
+  }
+
+  buttonMenu.addEventListener("click", toggleMenu);
+</script>

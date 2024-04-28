@@ -1,0 +1,68 @@
+---
+import { Services } from "../constans/index.ts";
+---
+
+<section class="Services">
+  <h2 class="sub-titles">What do I offer?</h2>
+  <div class="Services-cards">
+    {
+      Services.map((service) => (
+        <article class="Services-card">
+          <service.icon class="Services-card-icon" />
+          <h3 class="Services-card-title">{service.name}</h3>
+          <p class="Services-card-paragraph">{service.description}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .Services {
+    padding: 100px 0px;
+  }
+
+  .Services-cards {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+  }
+  .Services-card {
+    width: 100%;
+    background-color: var(--Blue-color);
+    font-size: 14px;
+    padding: 30px 40px;
+    font-weight: 300;
+    border-radius: 10px;
+    transition:
+      background 0.5s,
+      transform 0.5s;
+  }
+
+  .Services-card:hover {
+    background-color: var(--Yellow-color);
+    color: var(--dark-color);
+    transform: translateY(-10px);
+  }
+
+  .Services-card-icon {
+    width: 50px;
+    height: 46px;
+    margin-bottom: 15px;
+  }
+
+  .Services-card-title {
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 411px) {
+    .Services-cards {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+    }
+  }
+</style>

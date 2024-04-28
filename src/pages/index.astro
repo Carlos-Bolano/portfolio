@@ -1,0 +1,47 @@
+---
+import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+import AboutSection from "../sections/AboutSection.astro";
+import CoverSection from "../sections/CoverSection.astro";
+import PorfolioSection from "../sections/PorfolioSection.astro";
+import ServicesSection from "../sections/ServicesSection.astro";
+import TechStackSection from "../sections/TechStackSection.astro";
+import ContactSection from "../sections/ContactSection.astro";
+---
+
+<Layout title="Carlos Bolaño Portfolio">
+  <main class="container">
+    <Navbar />
+    <CoverSection />
+    <PorfolioSection />
+    <AboutSection />
+    <ServicesSection />
+    <TechStackSection />
+    <ContactSection />
+  </main>
+  <footer class="Footer">
+    <p>
+      Made with <span class="decoration">❤</span> by <a
+        href="https://www.linkedin.com/in/carlos-bola%C3%B1o-716926191/"
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Carlos Bolaño"
+        class="text-decoration"
+      >
+        Carlos Bolaño</a
+      >
+    </p>
+  </footer>
+</Layout>
+
+<style>
+  .Footer {
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+    background-color: var(--Blue-color);
+    font-weight: 300;
+    margin-top: 50px;
+    font-size: 17px;
+  }
+</style>

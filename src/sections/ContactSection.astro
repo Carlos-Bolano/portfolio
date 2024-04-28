@@ -1,0 +1,225 @@
+---
+import { ContactLinks } from "../constans";
+---
+
+<section class="Contact" id="contact">
+  <article class="Contact-content">
+    <div class="Contact-left">
+      <h2 class="sub-titles">Contact me</h2>
+      <p class="Contact-paragraph">
+        Open to job opportunities and collaborating on interesting projects. If
+        you're looking for someone with my profile, I'd love to learn more about
+        your team and how I can contribute!
+      </p>
+      <div class="Contact-icons">
+        {
+          ContactLinks.map((link) => (
+            <a
+              class="Contact-icon"
+              title={link.name}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <link.icon />
+            </a>
+          ))
+        }
+      </div>
+      <a href="#" class="Contact-btn-download btn">Download CV</a>
+    </div>
+    <div class="Contact-right">
+      <form class="Contact-form">
+        <input
+          class="Contact-input"
+          type="text"
+          name="name"
+          placeholder="Name"
+          autocomplete="off"
+          required
+        />
+        <input
+          class="Contact-input"
+          type="email"
+          name="email"
+          placeholder="Email"
+          autocomplete="off"
+          required
+        />
+        <textarea
+          class="Contact-input"
+          name="message"
+          rows="5"
+          placeholder="Message"
+          autocomplete="off"
+          required></textarea>
+
+        <div id="message"></div>
+        <button class="Contact-send-btn" type="submit">Send</button>
+      </form>
+    </div>
+  </article>
+</section>
+
+<style>
+  .Contact {
+    padding: 50px 0px;
+  }
+  .Contact-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .Contact-left {
+    flex-basis: 50%;
+  }
+
+  .Contact-left h2 {
+    display: block;
+  }
+  .Contact-paragraph {
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .Contact-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+  }
+
+  .Contact-btn-download {
+    display: inline-block;
+    margin-top: 30px;
+  }
+
+  .Contact-icons a {
+    color: var(--color-text);
+    display: inline-block;
+    transition: transform 0.5s;
+  }
+
+  .Contact-icons a:hover {
+    color: var(--Yellow-color);
+    transform: translateY(-5px);
+  }
+
+  .Contact-icons svg {
+    height: 35px;
+    width: 37px;
+  }
+
+  .Contact-right {
+    flex-basis: 50%;
+  }
+  .Contact-form {
+    display: flex;
+    flex-direction: column;
+    font-family: var(--mainTypography);
+  }
+  .Contact-input {
+    font-family: var(--mainTypography);
+    background: var(--Blue-color);
+    padding: 15px;
+    margin: 10px 0px;
+    color: rgb(228, 224, 224);
+    font-size: 18px;
+    border-radius: 7px;
+  }
+  .Contact-send-btn {
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 15px 35px;
+    background-color: var(--Yellow-color);
+    color: var(--dark-color);
+    cursor: pointer;
+    transition: all 0.5s;
+  }
+
+  @media (max-width: 866px) {
+    .Contact-content {
+      flex-direction: column;
+    }
+
+    .Contact-left {
+      width: 100%;
+    }
+    .Contact-right {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector("form") as HTMLFormElement;
+  const divMessage = document.getElementById("message") as HTMLDivElement;
+
+  const showMessage = (message: string, className: string) => {
+    const messageSpan = document.createElement("span");
+    messageSpan.classList.add(className);
+    messageSpan.textContent = message;
+
+    divMessage.appendChild(messageSpan);
+
+    setTimeout(() => {
+      messageSpan.remove();
+    }, 4000);
+  };
+
+  const showSuccessMessage = (message: string, name: string) => {
+    showMessage(
+      `Muchas gracias ${name}, ${message}`,
+      "Contact-success-message"
+    );
+  };
+
+  const showErrorMessage = (message: string) => {
+    showMessage(message, "Contact-error-message");
+  };
+
+  const sendRequestToAPI = async (url: string, data: any) => {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error en la solicitud a la API: ${response.status}`);
+    }
+
+    const apiResponse = await response.json();
+    return apiResponse;
+  };
+
+  const apiUri =
+    import.meta.env.PUBLIC_API_URI || "http://localhost:3000/api/people";
+
+  const handleSubmit = async (event: Event) => {
+    event.preventDefault();
+
+    const data = new FormData(event.target as HTMLFormElement);
+    const value = Object.fromEntries(data.entries());
+
+    try {
+      const apiResponse = await sendRequestToAPI(apiUri, value);
+
+      if (apiResponse && apiResponse.status === "success") {
+        showSuccessMessage(apiResponse.message, apiResponse.data.name);
+      } else if (apiResponse && apiResponse.status === "error") {
+        showErrorMessage(apiResponse.message);
+      }
+    } catch (error) {
+      const message = "Error al enviar el folmulario ❌";
+      showErrorMessage(message);
+      console.log(error);
+    }
+
+    event.target.reset();
+  };
+
+  form.addEventListener("submit", handleSubmit);
+</script>

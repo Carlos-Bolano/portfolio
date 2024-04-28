@@ -1,0 +1,96 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  technologies: { name: string; icon: (_props: Record<string, any>) => any }[];
+  link: string;
+  image: string;
+  github: string;
+  recent: boolean;
+  index?: number;
+}
+const { title, description, technologies, link, image, github }: Props =
+  Astro.props;
+---
+
+<article class="Porfolio-card">
+  <div class="Porfolio-card-image">
+    <img
+      class="Porfolio-card-img"
+      src={image}
+      width={100}
+      height={100}
+      alt={`image of ${title} project from Carlos Bolaño`}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="Porfolio-card-info">
+    <a
+      class="Porfolio-card-title"
+      href={link}
+      title={title}
+      target="_blank"
+      rel="noopener noreferrer">{title}</a
+    >
+    <p class="Porfolio-card-description">{description}</p>
+
+    <div class="Porfolio-card-technologies">
+      {
+        technologies.map((tech) => (
+          <a href="#" title={tech.name} id="icon" class="Porfolio-project-tech">
+            <tech.icon strokeWidth="1.25" />
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</article>
+
+<style>
+  .Porfolio-card {
+    background-color: var(--Blue-color);
+    padding: 40px;
+    border-radius: 10px;
+  }
+
+  .Porfolio-card:hover .Porfolio-card-title {
+    text-decoration: underline;
+  }
+
+  .Porfolio-card-image {
+    background-color: var(--Yellow-color);
+    flex-basis: 40%;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .Porfolio-card-img {
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+  }
+
+  .Porfolio-card:hover .Porfolio-card-img {
+    transform: scale(1.09);
+  }
+  .Porfolio-card-info {
+    flex-basis: 60%;
+  }
+  .Porfolio-card-title {
+    margin-top: 20px;
+    color: var(--Yellow-color);
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .Porfolio-card-description {
+    font-size: 17px;
+    line-height: 23px;
+  }
+  .Porfolio-card-technologies {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+</style>
