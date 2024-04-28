@@ -152,8 +152,6 @@ import { ContactLinks } from "../constans";
 </style>
 
 <script>
-  import { apiUrl } from "../../config.js";
-
   const form = document.querySelector("form") as HTMLFormElement;
   const divMessage = document.getElementById("message") as HTMLDivElement;
 
@@ -197,8 +195,10 @@ import { ContactLinks } from "../constans";
     return apiResponse;
   };
 
-  const API_URI = apiUrl || "http://localhost:3000/api/people";
-  console.log(API_URI);
+  // TODO: add an environment variable to save the API_URI
+  const API_URI =
+    "https://back-end-portfolio-1.onrender.com/api/people" ||
+    "http://localhost:3000/api/people";
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
