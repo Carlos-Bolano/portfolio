@@ -152,7 +152,7 @@ import { ContactLinks } from "../constans";
 </style>
 
 <script>
-  import { apiUrl } from "../../astro.config.mjs";
+  import { apiUrl } from "../../config.js";
 
   const form = document.querySelector("form") as HTMLFormElement;
   const divMessage = document.getElementById("message") as HTMLDivElement;
@@ -198,6 +198,7 @@ import { ContactLinks } from "../constans";
   };
 
   const API_URI = apiUrl || "http://localhost:3000/api/people";
+  console.log(API_URI);
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
