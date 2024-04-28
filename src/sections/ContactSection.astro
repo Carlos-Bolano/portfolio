@@ -152,6 +152,8 @@ import { ContactLinks } from "../constans";
 </style>
 
 <script>
+  import { apiUrl } from "../../astro.config.mjs";
+
   const form = document.querySelector("form") as HTMLFormElement;
   const divMessage = document.getElementById("message") as HTMLDivElement;
 
@@ -195,8 +197,7 @@ import { ContactLinks } from "../constans";
     return apiResponse;
   };
 
-  const apiUri =
-    import.meta.env.PUBLIC_API_URI || "http://localhost:3000/api/people";
+  const API_URI = apiUrl || "http://localhost:3000/api/people";
 
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
@@ -205,7 +206,7 @@ import { ContactLinks } from "../constans";
     const value = Object.fromEntries(data.entries());
 
     try {
-      const apiResponse = await sendRequestToAPI(apiUri, value);
+      const apiResponse = await sendRequestToAPI(API_URI, value);
 
       if (apiResponse && apiResponse.status === "success") {
         showSuccessMessage(apiResponse.message, apiResponse.data.name);
