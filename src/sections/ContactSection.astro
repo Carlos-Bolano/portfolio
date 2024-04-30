@@ -154,6 +154,9 @@ import { ContactLinks } from "../constans";
 <script>
   const form = document.querySelector("form") as HTMLFormElement;
   const divMessage = document.getElementById("message") as HTMLDivElement;
+  const button = document.querySelector(
+    ".Contact-send-btn"
+  ) as HTMLButtonElement;
 
   const showMessage = (message: string, className: string) => {
     const messageSpan = document.createElement("span");
@@ -184,7 +187,7 @@ import { ContactLinks } from "../constans";
       headers: {
         "Content-Type": "application/json",
       },
-      mode: "no-cors",
+
       body: JSON.stringify(data),
     });
 
@@ -202,6 +205,9 @@ import { ContactLinks } from "../constans";
   const handleSubmit = async (event: Event) => {
     event.preventDefault();
 
+    button.disabled = true;
+    button.textContent = "Sending...";
+
     const data = new FormData(event.target as HTMLFormElement);
     const value = Object.fromEntries(data.entries());
 
@@ -209,6 +215,7 @@ import { ContactLinks } from "../constans";
       const apiResponse = await sendRequestToAPI(API_URI, value);
 
       if (apiResponse && apiResponse.status === "success") {
+        button.textContent = "Sent";
         showSuccessMessage(apiResponse.message, apiResponse.data.name);
       } else if (apiResponse && apiResponse.status === "error") {
         showErrorMessage(apiResponse.message);
@@ -218,6 +225,9 @@ import { ContactLinks } from "../constans";
       showErrorMessage(message);
       console.log(error);
     }
+
+    button.textContent = "Send";
+    button.disabled = false;
 
     form.reset();
   };
