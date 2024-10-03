@@ -24,6 +24,7 @@ import Sass from "../components/icons/Sass.astro";
 import TailwindCSS from "../components/icons/TailwindCSS.astro";
 import TypeScript from "../components/icons/TypeScript.astro";
 import ViteJS from "../components/icons/ViteJS.astro";
+import Gemini from "../components/icons/Gemini.astro";
 
 export const NavLinks = [
   { name: "Home", path: "#home" },
@@ -150,6 +151,10 @@ export const TAGS = {
     name: "Console icon",
     icon: Console,
   },
+  Gemini: {
+    name: "Google Gemini",
+    icon: Gemini,
+  },
 };
 
 export const TechStack = [
@@ -196,20 +201,44 @@ export const ContactLinks = [
 
 export const projects = [
   {
-    title: "Age Calculator",
+    title: "Moodflix",
     description:
-      "My solution to an exciting challenge from Frontend Mentor, a platform that provides coding projects designed to improve skills in development, The main objective was to design and implement a user interface and calculation logic for an Age Calculator",
-    link: "https://age--calculator.vercel.app/",
-    image: "assets/images/project-04.webp",
-    technologies: [TAGS.React, TAGS.Tailwind, TAGS.Vite, TAGS.ESlint],
-    github: "https://github.com/Carlos-Bolano/age-calculator",
+      "an AI-powered movie recommendation app that analyzes users' emotional state from their text input and suggests movies that match their mood. The app uses Google's Gemini API to interpret emotions and recommends movies, providing personalized explanations for each selection",
+    link: "https://moodflix-by-calisto.vercel.app",
+    image: "assets/images/project-05.png",
+    technologies: [
+      TAGS.NextJS,
+      TAGS.React,
+      TAGS.Tailwind,
+      TAGS.ESlint,
+      TAGS.Gemini,
+    ],
+    github: "https://github.com/Carlos-Bolano/moodflix",
     recent: true,
+  },
+  {
+    title: "JadirhGonzalezPoems",
+    description:
+      "Task Manager is a task management app that features authentication for user security and privacy, an intuitive and adaptable interface offers an enhanced user experience. This project demonstrates my ability to create practical and user-centered solutions, providing an effective tool to improve daily productivity.",
+    link: "https://jadirhgonzalezpoems.vercel.app",
+    image: "assets/images/project-06.png",
+    technologies: [
+      TAGS.React,
+      TAGS.Tailwind,
+      TAGS.Vite,
+      TAGS.ESlint,
+      TAGS.Node,
+      TAGS.Express,
+      TAGS.MongoDB,
+    ],
+    github: "https://github.com/Carlos-Bolano/jadirhgonzalezpoems",
+    recent: false,
   },
   {
     title: "Task Manager",
     description:
       "Task Manager is a task management app that features authentication for user security and privacy, an intuitive and adaptable interface offers an enhanced user experience. This project demonstrates my ability to create practical and user-centered solutions, providing an effective tool to improve daily productivity.",
-    link: "https://manejador-de-tareas.vercel.app/tasks",
+    link: "https://manejador-de-tareas.vercel.app",
     image: "assets/images/project-02.webp",
     technologies: [
       TAGS.React,
@@ -221,14 +250,14 @@ export const projects = [
       TAGS.MongoDB,
     ],
     github: "https://github.com/Carlos-Bolano/Task-Organizer",
-    recent: true,
+    recent: false,
   },
   {
     title: "Travlog Landing Page",
     description:
       "I built this page based on a design made in figma that I found in the figma community, the design only had desktop views so I adapted it to mobile, I developed it with AstroJS and I learned some things about this framework so I had fun creating it",
     link: "https://travlog-website.vercel.app/",
-    image: "assets/images/project-03.webp",
+    image: "assets/images/project-03.png",
     technologies: [
       TAGS.HTML,
       TAGS.CSS,
