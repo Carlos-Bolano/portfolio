@@ -28,4 +28,3 @@
 
 Este portafolio no solo presenta mi experiencia y habilidades de manera efectiva, sino que también demuestra mi capacidad para crear experiencias web atractivas y funcionales. ¡Explora y descubre lo que este portafolio tiene para ofrecer sobre mí y mi trabajo!
 
-¡Espero que encuentres interesante mi viaje profesional plasmado en este espacio digital!
